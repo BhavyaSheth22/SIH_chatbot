@@ -1,2 +1,2 @@
-# SIH_Crawler
-Finance web crawler for SIH
+# SIH_chatbot
+Medical chatbot for SIH
