@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html,body{
-background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+background-image: url('https://image.shutterstock.com/image-photo/black-stethoscope-healthcare-260nw-1030781125.jpg');
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
@@ -16,11 +16,19 @@ align-content: center;
 }
 
 .card{
-height: 370px;
+height: 375px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
 background-color: rgba(0,0,0,0.5) !important;
+}
+
+.card2{
+    height: 475px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0,0,0,0.5) !important;
 }
 
 .social_icon span{
@@ -38,11 +46,11 @@ cursor: pointer;
 color: white;
 }
 
-.social_icon{
+/* .social_icon{
 position: absolute;
 right: 20px;
 top: -45px;
-}
+} */
 
 .input-group-prepend span{
 width: 50px;
