@@ -1,8 +1,11 @@
-from flask import render_template, url_for, flash, redirect, request
+from flask import url_for, flash, redirect, request, Flask, render_template, jsonify
 from sih_chatbot import app, db, bcrypt
 from sih_chatbot.forms import RegistrationForm, LoginForm
-from sih_chatbot.models import User
+from sih_chatbot.models import User, Message
 from flask_login import login_user, current_user, logout_user, login_required
+import pusher
+
+
 
 
 # @app.route("/")
@@ -11,12 +14,23 @@ from flask_login import login_user, current_user, logout_user, login_required
 #     return render_template('home.html')
 
 
+pusher_client = pusher.Pusher(
+  app_id='932401',
+  key='474991b3a2877f9aa291',
+  secret='628252859ca348ecb306',
+  cluster='ap2',
+  ssl=True
+)
+
 @login_required
 @app.route("/chat")
 def chat():
     return render_template('chatDemo.html')
 
 @app.route("/")
+@app.route("/home")
+def home():
+    return redirect(url_for('register'))
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -47,7 +61,8 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('chat'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template('login.html', title='Login', form=form)
+    messages = Message.query.all()
+    return render_template('ChatScreen.html', title='Login', form=form, messages=messages)
 
 
 # @app.route("/logout")
@@ -55,4 +70,29 @@ def login():
 #     logout_user()
 #     return redirect(url_for('home'))
 
+# @app.route('/ChatScreen')
+# def onlineRef():
+    
+#     return render_template('ChatScreen.html', messages=messages)
+
+@app.route('/message', methods=['POST'])
+def message():
+
+    try:
+        message = request.form.get('message')
+        print(message)
+        new_message = Message(message=message, key=True)
+        db.session.add(new_message)
+        db.session.commit()
+        print(new_message.key)
+        pusher_client.trigger('chat-channel', 'new-message', {'message': message, 'key':new_message.key})
+        pusher_client.trigger('chat-channel', 'new-message', {'message': "hi", 'key':False})#bot message triggering
+
+        return jsonify({'result' : 'success'})
+    
+    except:
+
+        return jsonify({'result' : 'failure'})
+
+   
 

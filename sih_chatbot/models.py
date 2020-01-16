@@ -14,7 +14,13 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(30), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
-    
-
     # def __repr__(self):
     #     return f"User('{self.first_name}', '{self.email}')"
+
+class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    # username = db.Column(db.String(50))
+    message = db.Column(db.String(500))
+    key = db.Column(db.Boolean(), default=False) # User = true, bot = false
+
+   
