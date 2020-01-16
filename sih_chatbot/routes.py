@@ -17,6 +17,9 @@ def chat():
     return render_template('chatDemo.html')
 
 @app.route("/")
+@app.route("/home")
+def home():
+    return redirect(url_for('register'))
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
