@@ -24,6 +24,15 @@
 
 <body>
 	<div class="container">
+		{% with messages = get_flashed_messages(with_categories = true) %}
+			{% if messages %}
+				{% for category, message in messages %}
+					<div class="alert alert-{{ category }}">
+						{{ message }}
+					</div>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}	
 		<div class="d-flex justify-content-center h-100">
 			<div class="card">
 				<div class="card-header">
@@ -35,31 +44,50 @@
 					</div> -->
 				</div>
 				<div class="card-body">
-					<form>
+					<form method = "POST" action = "">
+						{{ form.hidden_tag() }}
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" class="form-control" placeholder="username">
+							{% if form.email.errors %}
+								{{ form.email(class="form-control is-invalid", placeholder="Email") }}
+									<div class="invalid-feedback">
+										{% for error in form.email.errors %}	
+											<span>{{ error }}</span>
+										{% endfor%}
+									</div>
+							{% else %}
+								{{ form.email(class="form-control", placeholder="Email") }}
+							{% endif %}
 
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" class="form-control" placeholder="password">
+							{% if form.password.errors %}
+								{{ form.password(class="form-control is-invalid", placeholder="Password") }}
+									<div class="invalid-feedback">
+										{% for error in form.password.errors %}	
+											<span>{{ error }}</span>
+										{% endfor%}
+									</div>
+							{% else %}
+								{{ form.password(class="form-control", placeholder="Password") }}
+							{% endif %}
 						</div>
 						<div class="row align-items-center remember">
 							<input type="checkbox">Remember Me
 						</div>
 						<div class="form-group">
-							<input type="submit" value="Login" class="btn float-right login_btn">
+							{{ form.submit(class="btn float-right login_btn") }}
 						</div>
 					</form>
 				</div>
 				<div class="card-footer">
 					<div class="d-flex justify-content-center links">
-						Don't have an account?<a href="#">Sign Up</a>
+						Don't have an account?<a href="{{ url_for('register') }}">Sign Up</a>
 					</div>
 					<div class="d-flex justify-content-center">
 						<a href="#">Forgot your password?</a>

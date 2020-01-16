@@ -35,49 +35,94 @@
 					</div> -->
 				</div>
 				<div class="card-body">
-					<form>
+					<form method = "POST" action = "">
+						{{ form.hidden_tag() }}
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" class="form-control" placeholder="First Name">
-
+							{% if form.first_name.errors %}
+								{{ form.first_name(class="form-control is-invalid", placeholder="First Name") }}
+									<div class="invalid-feedback">
+										{% for error in form.first_name.errors %}	
+											<span>{{ error }}</span>
+										{% endfor%}
+									</div>
+							{% else %}
+								{{ form.first_name(class="form-control", placeholder="First Name") }}
+							{% endif %}
                         </div>
                         <div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" class="form-control" placeholder="Last Name">
+							{% if form.last_name.errors %}
+								{{ form.last_name(class="form-control is-invalid", placeholder="Last Name") }}
+									<div class="invalid-feedback">
+										{% for error in form.last_name.errors %}	
+											<span>{{ error }}</span>
+										{% endfor%}
+									</div>
+							{% else %}
+								{{ form.last_name(class="form-control", placeholder="Last Name") }}
+							{% endif %}
                         </div>
                         <div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" class="form-control" placeholder="Email">
+							{% if form.email.errors %}
+								{{ form.email(class="form-control is-invalid", placeholder="Email") }}
+									<div class="invalid-feedback">
+										{% for error in form.email.errors %}	
+											<span>{{ error }}</span>
+										{% endfor%}
+									</div>
+							{% else %}
+								{{ form.email(class="form-control", placeholder="Email") }}
+							{% endif %}
 
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" class="form-control" placeholder="password">
+							{% if form.password.errors %}
+								{{ form.password(class="form-control is-invalid", placeholder="Password") }}
+									<div class="invalid-feedback">
+										{% for error in form.password.errors %}	
+											<span>{{ error }}</span>
+										{% endfor%}
+									</div>
+							{% else %}
+								{{ form.password(class="form-control", placeholder="Password") }}
+							{% endif %}
                         </div>
                         <div class="input-group form-group">
 							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" class="form-control" placeholder="Confirm password">
+							{% if form.confirm_password.errors %}
+								{{ form.confirm_password(class="form-control is-invalid", placeholder="Confirm Password") }}
+									<div class="invalid-feedback">
+										{% for error in form.confirm_password.errors %}	
+											<span>{{ error }}</span>
+										{% endfor%}
+									</div>
+							{% else %}
+								{{ form.confirm_password(class="form-control", placeholder="Confirm Password") }}
+							{% endif %}
 
 						</div>
+						<div class="form-group">
+							{{ form.submit(class="btn float-right login_btn") }}
+                    	</div>
 					</form>
 				</div>
 				<div class="card-footer">
 					<div class="d-flex justify-content-center links">
-						Have an account?<a href="#">Sign In</a>
+						Have an account?<a href="{{ url_for('login') }}">Sign In</a>
 					</div>
-					<div class="form-group">
-                        <input type="submit" value="Register" class="btn float-right login_btn">
-                    </div>
 				</div>
 			</div>
 		</div>
