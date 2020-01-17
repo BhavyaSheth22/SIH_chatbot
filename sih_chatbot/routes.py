@@ -22,11 +22,10 @@ pusher_client = pusher.Pusher(
   ssl=True
 )
 
-# @login_required
+@login_required
 @app.route("/")
-@app.route("/home")
-def home():
-    return redirect(url_for('register'))
+def landing():
+    return render_template('landing.html')
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -70,10 +69,10 @@ def chat():
 def medical_history():
     return render_template('medical_history.html')
 
-# @app.route("/logout")
-# def logout():
-#     logout_user()
-#     return redirect(url_for('home'))
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('landing'))
 
 # @app.route('/ChatScreen')
 # def onlineRef():
