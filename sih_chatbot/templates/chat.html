@@ -26,69 +26,44 @@
 	<link rel="stylesheet" type="text/css" href="../static/css/style.css">
 </head>
 
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body>
+	<style>
+		p {
+			font-family: "Times New Roman", Times, serif;
+		}
+	</style>
 	<div class="container-fluid h-100">
 
-		<div class="bg-color">
-			<nav class="navbar navbar-default navbar-fixed-top">
-				<div class="container">
-					<div class="col-md-12">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-							<a class="navbar-brand" href="{{url_for('landing')}}"><img src="../static/img/logo1.png"
-									class="img-responsive" style="width: 140px; margin-top: -16px;"></a>
-						</div>
-						<div class="collapse navbar-collapse navbar-right" id="myNavbar">
-							<ul class="nav navbar-nav">
-								{% if current_user.is_authenticated %}
-								<li class="active"><a href="{{url_for('login')}}"></a>Home</li>
-								<li class=""><a href="{{url_for('chat')}}"></a>Chat</li>
-								<li class=""><a href="{{url_for('register')}}"></a>Medical Form</li>
-								<li class=""><a href="{{url_for('logout')}}"></a>Logout</li>
-								{% else %}
-								<li class="active"><a href="{{url_for('login')}}">Login</a></li>
-								<li class=""><a href="{{url_for('register')}}">Register</a></li>
-								{% endif %}
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="{{url_for('landing')}}"><img src="../static/img/capture2.png"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-								<!-- <li class=""><a href="#about">About</a></li>
-					  <li class=""><a href="#testimonial">Testimonial</a></li>
-					  <li class=""><a href="#contact">Contact</a></li> -->
-							</ul>
-						</div>
-					</div>
-				</div>
-			</nav>
-		</div>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto my-2">
+					{% if current_user.is_authenticated %}
+					<li class="active"><a href="{{url_for('login')}}" class="btn">Home</a></li>
+					<li class=""><a href="{{url_for('register')}}" class="btn">Chat</a></li>
+					<li class=""><a href="{{url_for('medical_history')}}" class="btn">Medical Form</a></li>
+					<li class=""><a href="{{url_for('logout')}}" class="btn">Logout</a></li>
+					{% else %}
+					<li class="active"><a href="{{url_for('login')}}">Login</a></li>
+					<li class=""><a href="{{url_for('register')}}">Register</a></li>
+					{% endif %}
+
+				</ul>
+
+			</div>
+		</nav>
 		<div class="row justify-content-center h-100">
 			<div class="col-md-8 col-xl-6 chat">
 				<div class="card">
 					<div class="card-header msg_head">
-						<!-- <div class="d-flex bd-highlight">
-							<div class="img_cont">
-								<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
-								<span class="online_icon"></span>
-							</div>
-						</div> -->
-						<span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
-						<div class="action_menu">
-							<ul>
-								<li><i class="fas fa-user-circle"></i> View profile</li>
-								<li><i class="fas fa-users"></i> Add to close friends</li>
-								<li><i class="fas fa-plus"></i> Add to group</li>
-								<li><i class="fas fa-ban"></i> Block</li>
-							</ul>
-						</div>
 					</div>
 					<div class="card-body msg_card_body" id="content">
 						<div class="d-flex justify-content-start mb-4">
-							<!-- <div class="img_cont_msg">
-								<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
-									class="rounded-circle user_img_msg">
-							</div> -->
 							<div class="msg_cotainer">
 								Hi, how are you samim?
 							</div>
@@ -146,6 +121,19 @@
 						console.log('chat_text')
 					});
 
+				});
+
+				$("input[type='text']").keypress(function (event) {
+					if (event.which === 13) {
+						//grabbing new todo text from input
+						let message = $('#chat_text').val();
+
+						//create a new li and add to ul
+						$.post('/message', { 'message': message }, function () {
+							$('#chat_text').val('');
+							console.log('chat_text')
+						});
+					}
 				});
 
 				// Enable pusher logging - don't include this in production
