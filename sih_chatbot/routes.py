@@ -63,7 +63,8 @@ def login():
 
 @app.route("/chat")
 def chat():
-    return render_template('chat.html')
+    messages = Message.query.all()
+    return render_template('chat.html', messages=messages)
 
 @app.route("/medical_history")
 def medical_history():
@@ -153,6 +154,7 @@ def message():
         db.session.commit()
         print(new_message.key)
         pusher_client.trigger('chat-channel', 'new-message', {'message': message, 'key':new_message.key})
+        
         pusher_client.trigger('chat-channel', 'new-message', {'message': "hi", 'key':False})#bot message triggering
 
         return jsonify({'result' : 'success'})

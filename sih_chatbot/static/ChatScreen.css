@@ -1,11 +1,15 @@
 body,html{
     height: 100%;
     margin: 0;
-    background: #7F7FD5;
-   background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
-    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+    background:gray;
+   /* background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); */
+    /* background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); */
 }
 
+.navbar-inner {
+    background:transparent;
+    width: 100%;
+}
 .chat{
     margin-top: auto;
     margin-bottom: auto;
@@ -150,7 +154,7 @@ margin-top: auto;
 margin-bottom: auto;
 margin-left: 10px;
 border-radius: 25px;
-background-color: #82ccdd;
+background-color: #fcfcfc;
 padding: 10px;
 position: relative;
 }
@@ -159,7 +163,7 @@ margin-top: auto;
 margin-bottom: auto;
 margin-right: 10px;
 border-radius: 25px;
-background-color: #78e08f;
+background-color: #3366cc;
 padding: 10px;
 position: relative;
 }
