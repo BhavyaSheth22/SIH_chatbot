@@ -86,7 +86,7 @@ def medical_database():
     blood = request.form.get('blood_select')
     #checkbox
     conditions = request.form.getlist('status_condition') 
-    symptoms = request.form.getlist('status_sympoms')
+    symptoms = request.form.getlist('status_symptom')
     #radio
     surgery = request.form.getlist('surgeries')
     medication = request.form.getlist('medications')
@@ -96,7 +96,7 @@ def medical_database():
     #all radio buttons and checkboxes are arrays are arrays
     #textarea
     surgery_text = request.form.get('surgeries_text')
-    medication_text = request.form.get('medication_text')
+    medication_text = request.form.get('medications_text')
     allergy_text = request.form.get('allergies_text')
 
     bmi = str(int(weight)/((int(height)/100)**2))
@@ -124,7 +124,7 @@ def medical_database():
                       tobacco=str(tobacco[0]),
                       alcohol=str(alcohol[0]),
                       surgery_text=str(surgery_text),
-                      medication_text=str(medical_history),
+                      medication_text=str(medication_text),
                       allergy_text=str(allergy_text))
     db.session.add(patient)
     db.session.commit()
