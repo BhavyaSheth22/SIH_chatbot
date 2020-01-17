@@ -149,7 +149,7 @@ def message():
         message = request.form.get('message')
         print(message)
         print(current_user.email)
-        new_message = Message(message=message, key=True, email=str(current_user.email))
+        new_message = Message(message=message, key=True, email=current_user.email)
         print(new_message)
         db.session.add(new_message)
         db.session.commit()

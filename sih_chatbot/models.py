@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     message = db.Column(db.String(1000))
-    email = db.Column(db.String(120), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=False, nullable=False)
     key = db.Column(db.Boolean(), default=False) # User = true, bot = false
 
    
