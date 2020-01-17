@@ -23,10 +23,6 @@ pusher_client = pusher.Pusher(
 )
 
 @login_required
-@app.route("/chat")
-def chat():
-    return render_template('chatDemo.html')
-
 @app.route("/")
 @app.route("/home")
 def home():
@@ -62,8 +58,11 @@ def login():
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     messages = Message.query.all()
-    return render_template('ChatScreen.html', title='Login', form=form, messages=messages)
+    return render_template('login.html', title='Login', form=form, messages=messages)
 
+@app.route("/chat")
+def chat():
+    return render_template('ChatScreen.html')
 
 # @app.route("/logout")
 # def logout():
