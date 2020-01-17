@@ -1,7 +1,7 @@
 from flask import url_for, flash, redirect, request, Flask, render_template, jsonify
 from sih_chatbot import app, db, bcrypt
 from sih_chatbot.forms import RegistrationForm, LoginForm
-from sih_chatbot.models import User, Message
+from sih_chatbot.models import User, Message, Patient
 from flask_login import login_user, current_user, logout_user, login_required
 import pusher
 
@@ -67,8 +67,71 @@ def chat():
 
 @app.route("/medical_history")
 def medical_history():
-    return render_template('medical_history.html')
+    gender = ["Male", "Female", "Other"]
+    blood = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
+    return render_template('medical_history.html', gender=gender, blood=blood)
 
+
+@app.route("/medical_database", methods=['GET', 'POST'])
+def medical_database():
+    #text
+    age = request.form.get('age')
+    contact = request.form.get('contact')
+    emergency_contact = request.form.get('emergency_contact')
+    weight = request.form.get('weight')
+    height = request.form.get('height')
+    #select
+    gender = request.form.get('gender_select')
+    blood = request.form.get('blood_select')
+    #checkbox
+    conditions = request.form.getlist('status_condition') 
+    symptoms = request.form.getlist('status_sympoms')
+    #radio
+    surgery = request.form.getlist('surgeries')
+    medication = request.form.getlist('medications')
+    allergy = request.form.getlist('allergies')
+    tobacco = request.form.getlist('tobacco')
+    alcohol = request.form.getlist('alcohol')
+    #all radio buttons and checkboxes are arrays are arrays
+    #textarea
+    surgery_text = request.form.get('surgeries_text')
+    medication_text = request.form.get('medication_text')
+    allergy_text = request.form.get('allergies_text')
+
+    bmi = str(int(weight)/((int(height)/100)**2))
+    condition = ""
+    symptom = ""
+    for c in conditions:
+        condition += c + "," 
+    for s in symptoms:
+        symptom += s + "," 
+    patient = Patient(first_name=current_user.first_name, 
+                      last_name=current_user.last_name, 
+                      age=str(age), 
+                      contact=str(contact), 
+                      emergency_contact=str(emergency_contact), 
+                      weight=str(weight), 
+                      height=str(height), 
+                      bmi=bmi, 
+                      gender=str(gender),
+                      blood_group=str(blood),
+                      conditions=condition,
+                      symptoms=symptom,
+                      surgery=str(surgery[0]),
+                      medication=str(medication[0]),
+                      allergy=str(allergy[0]),
+                      tobacco=str(tobacco[0]),
+                      alcohol=str(alcohol[0]),
+                      surgery_text=str(surgery_text),
+                      medication_text=str(medical_history),
+                      allergy_text=str(allergy_text))
+    db.session.add(patient)
+    db.session.commit()
+    return redirect(url_for('chat'))
+    
+    
+    
+    
 @app.route("/logout")
 def logout():
     logout_user()

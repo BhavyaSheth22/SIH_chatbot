@@ -212,34 +212,28 @@
   <body>
 
     <div class="testbox">
-    <form method="POST" action="">
+    <form method="POST" action="{{ url_for('medical_database') }}">
         <div class="banner">
           <h1>Medical History</h1>
         </div>
-        <div class="item">
-          <p>Name<span class="required">*</span></p>
-          <div class="name-item">
-            <input type="text" name="name" placeholder="First" required/>
-            <input type="text" name="name" placeholder="Last" required/>
-          </div>
-        </div>
         <div class="contact-item">
           <div class="item">
-            <p>Email<span class="required">*</span></p>
-            <input type="text" name="name" required/>
+            <p>Contact Number<span class="required">*</span></p>
+            <input type="text" name="contact" required/>
           </div>
           <div class="item">
-            <p>Phone<span class="required">*</span></p>
-            <input type="text" name="name" required/>
+            <p>Emergency Contact<span class="required">*</span></p>
+            <input type="text" name="emergency_contact" required/>
           </div>
         </div>
         <div class="position-item">
           <div class="item">
             <p>Gender<span class="required">*</span></p>
-            <select required>
-              <option value="1">Male</option>
-              <option value="2">Female</option>
-              <option value="3">Other</option>
+            <select  name="gender_select" required>
+            <option value="" disabled selected hidden></option>
+                {% for g in gender %}
+              <option value="{{ g }}">{{ g }}</option>
+                {% endfor %}
             </select>
           </div>
           <div class="item">
@@ -247,115 +241,116 @@
             <input type="date" name="bdate" required/> 
             <i class="fas fa-calendar-alt"></i> -->
             <p>Age<span class="required">*</span></p>
-            <input type="text" name="name" required/>
+            <input type="text" name="age" required/>
           </div>
         </div>
         <div class="Row">
           <div class="Column">
             <p>Weigth(in kg)<span class="required">*</span></p>
-            <input type="text" name="name" required/>
+            <input type="text" name="weight" required/>
           </div>
           <div class="Column">
             <p>height(in cm)<span class="required">*</span></p>
-            <input type="text" name="name" required/>
+            <input type="text" name="height" required/>
           </div>
           <div class="Column">
             <p>Blood Group<span class="required">*</span></p>
-            <select required>
-              <option value="1">A+</option>
-              <option value="2">A-</option>
-              <option value="3">B+</option>
-              <option value="1">B-</option>
-              <option value="2">AB+</option>
-              <option value="3">AB-</option>
-              <option value="2">O+</option>
-              <option value="3">O-</option>
+            <select name="blood_select" required>
+            <option value="" disabled selected hidden></option> 
+              {% for b in blood %}  
+              <option value="{{ b }}">{{ b }}</option>
+              {% endfor %}
             </select>
           </div>
         </div> 
         <div class="question">
           <p>Check the conditions that apply to you or to any members of your immediate relatives:<span class="required">*</span></p>
           <div class="question-answer">
-              <label><input type="checkbox" value="none" id="Asthma" name="status" required>Asthma</input></label>
-              <label><input type="checkbox" value="none" id="Cancer" name="status" required>Cancer</input></label>
-              <label><input type="checkbox" value="none" id="Cardiac disease" name="status" required>Cardiac disease</input></label>
-              <label><input type="checkbox" value="none" id="Diabetes" name="status" required>Diabetes</input></label>
-              <label><input type="checkbox" value="none" id="Hypertension" name="status" required>Hypertension</input></label>
-              <label><input type="checkbox" value="none" id="Psychiatric disorder" name="status" required>Psychiatric disorder</input></label>
-              <label><input type="checkbox" value="none" id="Epilepsy" name="status" required>Epilepsy</input></label>
+              <input type="checkbox" value="Asthma" name="status_condition" >Asthma</input>
+              <input type="checkbox" value="Cancer" name="status_condition" >Cancer</input>
+              <input type="checkbox" value="Cardiac disease" name="status_condition" >Cardiac disease</input>
+              <input type="checkbox" value="Diabetes" name="status_condition" >Diabetes</input>
+              <input type="checkbox" value="Hypertension" name="status_condition" >Hypertension</input>
+              <input type="checkbox" value="Psychiatric disorder" name="status_condition" >Psychiatric disorder</input>
+              <input type="checkbox" value="Epilepsy" name="status_condition" >Epilepsy</input>
+              <input type="checkbox" value="None" name="status_condition" >None</input>
         </div>
+        <br>
         <div class="question">
           <p>Check the symptoms that you're currently experiencing:<span class="required">*</span></p>
           <div class="question-answer">
-              <label><input type="checkbox" value="none"  name="status" required>Chest Pain</input></label>
-              <label><input type="checkbox" value="none"  name="status" required>Respiratory</input></label>
-              <label><input type="checkbox" value="none"  name="status" required>Cardiac disease</input></label>
-              <label><input type="checkbox" value="none"  name="status" required>Cardiovascular</input></label>
-              <label><input type="checkbox" value="none"  name="status" required>Hematological</input></label>
-              <label><input type="checkbox" value="none"  name="status" required>Neurological</input></label>
-              <label><input type="checkbox" value="none"  name="status" required>Psychiatric</input></label>
-              <label><input type="checkbox" value="none"  name="status" required>Gastrointestinal</input></label>
-              <label><input type="checkbox" value="none"  name="status" required>Weight gain</input></label>
-              <label><input type="checkbox" value="none"  name="status" required>Weight loss</input></label>
-              <label><input type="checkbox" value="none"  name="status" required>Musculoskeletal</input></label>
+              <input type="checkbox" value="Chest Pain"  name="status_symptom">Chest Pain</input>
+              <input type="checkbox" value="Respiratory"  name="status_symptom">Respiratory</input>
+              <input type="checkbox" value="Cardiac disease"  name="status_symptom">Cardiac disease</input>
+              <input type="checkbox" value="Cardiovascular"  name="status_symptom">Cardiovascular</input>
+              <input type="checkbox" value="Hematological"  name="status_symptom">Hematological</input>
+              <input type="checkbox" value="Neurological"  name="status_symptom">Neurological</input>
+              <input type="checkbox" value="Psychiatric"  name="status_symptom">Psychiatric</input>
+              <input type="checkbox" value="Gastrointestinal"  name="status_symptom">Gastrointestinal</input>
+              <input type="checkbox" value="Weight gain"  name="status_symptom">Weight gain</input>
+              <input type="checkbox" value="Weight loss"  name="status_symptom">Weight loss</input>
+              <input type="checkbox" value="Musculoskeletal"  name="status_symptom">Musculoskeletal</input>
+              <input type="checkbox" value="None"  name="status_symptom" >None</input>
         </div>
         <div class="question">
           <p>Have you had any prior surgeries?<span class="required">*</span></p>
           <div class="question-answer">
             <div>
-              <input type="radio" value="none" id="radio_7" name="references" />
-              <label for="radio_7" class="radio"><span>Yes</span></label>
+              <input type="radio" value="yes" id="radio_1" name="surgeries" />
+              <label for="radio_1" class="radio"><span>Yes</span></label>
             </div>
             <div>
-              <input type="radio" value="none" id="radio_8" name="references" />
-              <label for="radio_8" class="radio"><span>No</span></label>
+              <input type="radio" value="no" id="radio_2" name="surgeries" />
+              <label for="radio_2" class="radio"><span>No</span></label>
             </div>
             <p>if yes, please state:</p>
-            <textarea rows="4" cols="50">
-                
-            </textarea>
+            <textarea name="surgeries_text" rows="4" cols="50"></textarea>
           </div>
         </div>
         <div class="question">
           <p>Are you currently taking any medication?<span class="required">*</span></p>
           <div class="question-answer">
             <div>
-              <input type="radio" value="none" id="radio_5" name="references" />
-              <label for="radio_5" class="radio"><span>Yes</span></label>
+              <input type="radio" value="yes" id="radio_3" name="medications" />
+              <label for="radio_3" class="radio"><span>Yes</span></label>
             </div>
             <div>
-              <input type="radio" value="none" id="radio_6" name="references" />
-              <label for="radio_6" class="radio"><span>No</span></label>
+              <input type="radio" value="no" id="radio_4" name="medications" />
+              <label for="radio_4" class="radio"><span>No</span></label>
             </div>
+            <p>if yes, please state:</p>
+            <textarea name="medications_text" rows="4" cols="50"></textarea>
           </div>
         </div>
         <div class="question">
-          <p>Do you have any medication allergies?<span class="required">*</span></p>
+          <p>Do you have any allergies?<span class="required">*</span></p>
           <div class="question-answer">
             <div>
-              <input type="radio" value="none" id="radio_7" name="references" />
-              <label for="radio_7" class="radio"><span>Yes</span></label>
+              <input type="radio" value="yes" id="radio_5" name="allergies" />
+              <label for="radio_5" class="radio"><span>Yes</span></label>
             </div>
             <div>
-              <input type="radio" value="none" id="radio_8" name="references" />
-              <label for="radio_8" class="radio"><span>No</span></label>
+              <input type="radio" value="no" id="radio_6" name="allergies" />
+              <label for="radio_6" class="radio"><span>No</span></label>
             </div>
             <div>
-              <input type="radio" value="none" id="radio_9" name="references" />
-              <label for="radio_9" class="radio"><span>Not Sure</span></label>
+              <input type="radio" value="no_sure" id="radio_7" name="allergies" />
+              <label for="radio_7" class="radio"><span>Not Sure</span></label>
             </div>
+            <p>if yes, please state:</p>
+            <textarea name="allergies_text" rows="4" cols="50"></textarea>
           </div>
         </div>
         <div class="question">
           <p>Do you use or do you have history of using tobacco? <span class="required">*</span></p>
           <div class="question-answer">
             <div>
-              <input type="radio" value="none" id="radio_10" name="references" />
-              <label for="radio_10" class="radio"><span>Yes</span></label>
+              <input type="radio" value="yes" id="radio_8" name="tobacco" />
+              <label for="radio_8" class="radio"><span>Yes</span></label>
             </div>
             <div>
-              <input type="radio" value="none" id="radio_11" name="references" />
-              <label for="radio_11" class="radio"><span>No</span></label>
+              <input type="radio" value="no" id="radio_9" name="tobacco" />
+              <label for="radio_9" class="radio"><span>No</span></label>
             </div>
           </div>
         </div>
@@ -363,21 +358,21 @@
           <p>How often do you consume alcohol?<span class="required">*</span></p>
           <div class="question-answer">
             <div>
-              <input type="radio" value="none" id="radio_12" name="references" />
-              <label for="radio_12" class="radio"><span>Often</span></label>
+              <input type="radio" value="yes" id="radio_10" name="alcohol" />
+              <label for="radio_10" class="radio"><span>Often</span></label>
             </div>
             <div>
-              <input type="radio" value="none" id="radio_13" name="references" />
-              <label for="radio_13" class="radio"><span>Not Often</span></label>
+              <input type="radio" value="not_often" id="radio_11" name="alcohol" />
+              <label for="radio_11" class="radio"><span>Not Often</span></label>
             </div>
              <div>
-              <input type="radio" value="none" id="radio_14" name="references" />
-              <label for="radio_14" class="radio"><span>Never</span></label>
+              <input type="radio" value="never" id="radio_12" name="alcohol" />
+              <label for="radio_12" class="radio"><span>Never</span></label>
             </div>
           </div>
         </div>
         <div class="btn-block">
-          <button type="submit" href="/">Apply For The Job</button>
+          <button type="submit" href="/">Submit</button>
         </div>
       </form>
     </div>
