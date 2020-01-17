@@ -26,8 +26,8 @@ class Message(db.Model):
    
 class Patient(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    age = db.Column(db.String(3), nullbale=False)
-    gender = db.Column(db.String(10), nullabe=False)
+    age = db.Column(db.String(3), nullable=False)
+    gender = db.Column(db.String(10), nullable=False)
     bmi = db.Column(db.String(10), nullable=False)
     blood_group = db.Column(db.String(10), nullable=False)
     # diseases= db.Column()

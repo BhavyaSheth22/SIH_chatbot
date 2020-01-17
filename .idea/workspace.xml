@@ -7,6 +7,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -19,7 +26,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -75,34 +82,38 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="450" y="168" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1579241510292">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="450" y="168" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1579241510292" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1579238956669">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1579238956669" />
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1579240628745">
+    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1579244435976">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1579240628745" />
-    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1579240628744">
+    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1579244435976" />
+    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1579244435975">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1579240628744" />
-    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1579240628743">
+    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1579244435975" />
+    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1579244435975">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1579240628743" />
-    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1579240628744">
+    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1579244435975" />
+    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1579244435975">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1579240628744" />
-    <state x="184" y="7" key="SettingsEditor" timestamp="1579239047944">
+    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1579244435975" />
+    <state x="184" y="7" key="SettingsEditor" timestamp="1579244091838">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="184" y="7" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1579239047944" />
-    <state x="379" y="189" key="com.intellij.ide.util.TipDialog" timestamp="1579238329678">
+    <state x="184" y="7" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1579244091838" />
+    <state x="379" y="189" key="com.intellij.ide.util.TipDialog" timestamp="1579243184348">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="189" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1579238329678" />
+    <state x="379" y="189" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1579243184348" />
     <state x="388" y="156" key="git4idea.merge.GitPullDialog" timestamp="1579238919012">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
