@@ -46,12 +46,12 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto my-2">
 						{% if current_user.is_authenticated %}
-						<li class="active"><a href="{{url_for('login')}}" class="btn">Home</a></li>
+						<li class=""><a href="{{url_for('login')}}" class="btn">Home</a></li>
 						<li class=""><a href="{{url_for('register')}}" class="btn">Chat</a></li>
 						<li class=""><a href="{{url_for('medical_history')}}" class="btn">Medical Form</a></li>
 						<li class=""><a href="{{url_for('logout')}}" class="btn">Logout</a></li>
 						{% else %}
-						<li class="active"><a href="{{url_for('login')}}">Login</a></li>
+						<li class=""><a href="{{url_for('login')}}">Login</a></li>
 						<li class=""><a href="{{url_for('register')}}">Register</a></li>
 						{% endif %}
 
@@ -72,24 +72,24 @@
 							</div>
 						</div>
 						{% for message in messages %}
-							{% if message.email == current_user.email %}
-								{% if message.key %}
-								<div class="d-flex justify-content-end mb-4">
-									<div class="msg_cotainer_send" bgcolor= "#3366cc">
+							{% if message.key %}
+								{% if message.email == current_user.email %}
+								<div class="d-flex justify-content-end mb-4 change-color-bot">
+									<div class="msg_cotainer_send">
 										{{message.message}}
 									</div>
 								</div>
-								{% else %}
+								{% endif %}
+							{% else %}
 								<div class="d-flex justify-content-start mb-4">
 									<div class="msg_cotainer">
 										{{message.message}}
 									</div>
 								</div>
-								{% endif %}
 							{% endif %}
 						{% endfor %}
 					</div>
-					<div class="card-footer">
+					<!-- <div class="card-footer">
 						<div class="input-group">
 							<div class="input-group-append">
 								<span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
@@ -99,6 +99,12 @@
 								<span class="input-group-text send_btn" id="chat_btn"><i
 										class="fas fa-location-arrow"></i></span>
 							</div>
+						</div>
+					</div> -->
+					<div class="input-group mt-2 mb-3">
+						<input type="text" name="" id="chat_text" class="form-control" placeholder="Enter your message" autofocus>
+						<div class="input-group-append">
+							<input type="submit" id="chat_btn" class="btn btn-primary btn-lg" value="Send">
 						</div>
 					</div>
 				</div>

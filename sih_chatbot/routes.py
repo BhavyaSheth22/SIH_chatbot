@@ -4,6 +4,7 @@ from sih_chatbot.forms import RegistrationForm, LoginForm
 from sih_chatbot.models import User, Message, Patient
 from flask_login import login_user, current_user, logout_user, login_required
 import pusher
+from scikit import chat
 
 
 
@@ -155,9 +156,10 @@ def message():
         db.session.commit()
         print("hello")
         print(new_message.key)
+        
         pusher_client.trigger('chat-channel', 'new-message', {'message': message, 'key':new_message.key})
         
-        pusher_client.trigger('chat-channel', 'new-message', {'message': "hi", 'key':False})#bot message triggering
+        pusher_client.trigger('chat-channel', 'new-message', {'message': chat(message), 'key':False})#bot message triggering
 
         return jsonify({'result' : 'success'})
     
