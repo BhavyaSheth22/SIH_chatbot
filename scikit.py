@@ -8,7 +8,7 @@ import json
 import pickle
 from sklearn.externals import joblib 
 
-with open("true.json") as file:
+with open("final.json") as file:
     data = json.load(file)
 
 try:
@@ -59,7 +59,7 @@ except:
 
 
     training = numpy.array(training)
-    print(training)
+    #print(training)
     output = numpy.array(output)
 
     with open("data.pickle", "wb") as f:
@@ -72,7 +72,7 @@ try:
     print("Using pickle")
 except:
     print("Using model")
-    model = MLPClassifier(solver='lbfgs', random_state = 1, hidden_layer_sizes = (20, 10))
+    model = MLPClassifier(solver='lbfgs', random_state = 1, hidden_layer_sizes = (20,10), verbose=True)
     model.fit(training, output)
     joblib.dump(model, 'trained.pkl')
 
@@ -100,14 +100,11 @@ def chat():
         results = model.predict([bag_of_words(inp, words)])[0]
         results_index = numpy.argmax(results)
         tag = labels[results_index]
-        print(results)
-        if(results[results_index] > 0.5):
-            for tg in data["intents"]:
-                if tg['tag'] == tag:
-                    response = tg['response']
-            print(random.choice(response))
-        else:
-            print("I don't understand. Please try again or ask a different question.")
-        
+        #print(results)
+    
+        for tg in data["intents"]:
+            if tg['tag'] == tag:
+                response = tg['response']
+        print(random.choice(response))
 
 chat()
