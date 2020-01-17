@@ -30,8 +30,16 @@ class RegistrationForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email',
-                        validators=[DataRequired(), Email()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
+    
+# class MedicalHistory(FlaskForm):
+#     phone = StringField('Phone number',validators=[DataRequired(), Length(min=10, max=10)])
+#     age = StringField('age', validators=[DataRequired(), Length(min=1, max=3)])
+#     weigth = StringField('weigth',validators=[DataRequired(), Length(min=1, max=3)])
+#     height = StringField('height',validators=[DataRequired(), Length(min=1, max=3)])
+    
+    
+
