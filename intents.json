@@ -1,0 +1,28 @@
+{"intents": [
+        {"tag": "greeting",
+         "patterns": ["Hi", "How are you", "Is anyone there?", "Hello", "Good day", "Whats up"],
+         "responses": ["Hello!", "Good to see you again!", "Hi there, how can I help?"],
+         "context_set": ""
+        },
+        {"tag": "goodbye",
+         "patterns": ["cya", "See you later", "Goodbye", "I am Leaving", "Have a Good day"],
+         "responses": ["Sad to see you go :(", "Talk to you later", "Goodbye!"],
+         "context_set": ""
+        },
+        {"tag": "about",
+         "patterns": ["What do you do?", "What are your features?", "How can you help me?", "features?"],
+         "responses": ["I can help you in segregating your medical history.", "I am your health assistant. Ask me anything about health!"],
+         "context_set": ""
+        },
+        {"tag": "name",
+         "patterns": ["what is your name", "what should I call you", "whats your name?"],
+         "responses": ["You can call me Healthify.", "I'm Healthify!", "I'm Healthify aka your personal health assistant."],
+         "context_set": ""
+        },
+        {"tag": "bmi",
+         "patterns": ["What is my bmi?", "What's my body mass index?", "bmi?", "Body mass index?"],
+         "responses": ["Your body mass index is 22. That is the usual range."],
+         "context_set": ""
+        }
+   ]
+}
