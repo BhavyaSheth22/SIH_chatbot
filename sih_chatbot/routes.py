@@ -58,8 +58,7 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('chat'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
-    messages = Message.query.all()
-    return render_template('login.html', title='Login', form=form, messages=messages)
+    return render_template('login.html', title='Login', form=form)
 
 @app.route("/chat")
 def chat():
@@ -149,9 +148,12 @@ def message():
     try:
         message = request.form.get('message')
         print(message)
-        new_message = Message(message=message, key=True)
+        print(current_user.email)
+        new_message = Message(message=message, key=True, email=str(current_user.email))
+        print(new_message)
         db.session.add(new_message)
         db.session.commit()
+        print("hello")
         print(new_message.key)
         pusher_client.trigger('chat-channel', 'new-message', {'message': message, 'key':new_message.key})
         

@@ -72,19 +72,21 @@
 							</div>
 						</div>
 						{% for message in messages %}
-						{% if message.key %}
-						<div class="d-flex justify-content-end mb-4">
-							<div class="msg_cotainer_send" bgcolor= "#3366cc">
-								{{message.message}}
-							</div>
-						</div>
-						{% else %}
-						<div class="d-flex justify-content-start mb-4">
-							<div class="msg_cotainer">
-								{{message.message}}
-							</div>
-						</div>
-						{% endif %}
+							{% if message.email == current_user.email %}
+								{% if message.key %}
+								<div class="d-flex justify-content-end mb-4">
+									<div class="msg_cotainer_send" bgcolor= "#3366cc">
+										{{message.message}}
+									</div>
+								</div>
+								{% else %}
+								<div class="d-flex justify-content-start mb-4">
+									<div class="msg_cotainer">
+										{{message.message}}
+									</div>
+								</div>
+								{% endif %}
+							{% endif %}
 						{% endfor %}
 					</div>
 					<div class="card-footer">
