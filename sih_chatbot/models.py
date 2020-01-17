@@ -26,8 +26,13 @@ class Message(db.Model):
    
 class Patient(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    age = db.Column(db.String(3), nullable=False)
+    first_name = db.Column(db.String(30), nullable=False)
+    last_name = db.Column(db.String(30), nullable=False)
+    age = db.Column(db.Integer, nullable=False)
+    #date of birth
     gender = db.Column(db.String(10), nullable=False)
-    bmi = db.Column(db.String(10), nullable=False)
+    weight = db.Column(db.Integer, nullable=False)
+    height = db.Column(db.Integer, nullable=False)
+    bmi = db.Column(db.Integer, nullable=False)
     blood_group = db.Column(db.String(10), nullable=False)
     # diseases= db.Column()
