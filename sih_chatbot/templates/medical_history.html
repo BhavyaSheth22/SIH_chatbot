@@ -1,163 +1,189 @@
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 <!------ Include the above in your HEAD tag ---------->
+<html>
 
-<form class="form-horizontal">
-    <fieldset>
+<head>
+    <title>Medical History</title>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+    <link href="../static/ChatScreen.css" rel="stylesheet">
+</head>
 
-        <!-- Form Name -->
-        <legend>Patient Creation </legend>
+<body>
+    <div class="justify-content-center">
+        <form>
+            <fieldset>
+                <!-- Form Name -->
+                <legend>Patient Creation </legend>
 
-        <!-- File Button -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="Photo">Photo</label>
-            <div class="col-md-4">
-                <input id="Photo" name="Photo" class="input-file" type="file">
-            </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="Registration Number ">Registration Number </label>
-            <div class="col-md-4">
-                <input id="Registration Number " name="Registration Number " type="text" placeholder=""
-                    class="form-control input-md">
-
-            </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="BHT Number">BHT Number</label>
-            <div class="col-md-4">
-                <input id="BHT Number" name="BHT Number" type="text" placeholder="" class="form-control input-md">
-
-            </div>
-        </div>
-
-        <!-- Select Basic -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="selectbasic">Marriage Status</label>
-            <div class="col-md-4">
-                <select id="selectbasic" name="selectbasic" class="form-control">
-                    <option value="1">Married</option>
-                    <option value="2">Unmarried</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="Patient Name ">Patient Name </label>
-            <div class="col-md-4">
-                <input id="Patient Name " name="Patient Name " type="text" placeholder="" class="form-control input-md">
-
-            </div>
-        </div>
-
-        <!-- Select Basic -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="Patient Status ">Patient Status </label>
-            <div class="col-md-4">
-                <select id="Patient Status " name="Patient Status " class="form-control">
-                    <option value="1">Option one</option>
-                    <option value="2">Option two</option>
-                    <option value="3">Option three</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="textinput">Registration Date </label>
-            <div class="col-md-4">
-                <input id="textinput" name="textinput" type="text" placeholder="Registration Date "
-                    class="form-control input-md">
-
-            </div>
-        </div>
-
-        <!-- Multiple Radios -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="Gender">Gender</label>
-            <div class="col-md-4">
-                <div class="radio">
-                    <label for="Gender-0">
-                        <input type="radio" name="Gender" id="Gender-0" value="1" checked="checked">
-                        Option one
-                    </label>
+                <!-- File Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="Photo">Photo</label>
+                    <div class="col-md-4">
+                        <input id="Photo" name="Photo" class="input-file" type="file">
+                    </div>
                 </div>
-                <div class="radio">
-                    <label for="Gender-1">
-                        <input type="radio" name="Gender" id="Gender-1" value="2">
-                        Option two
-                    </label>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="Registration Number ">Registration Number </label>
+                    <div class="col-md-4">
+                        <input id="Registration Number " name="Registration Number " type="text" placeholder=""
+                            class="form-control input-md">
+
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="Date of Birth">Date of Birth</label>
-            <div class="col-md-4">
-                <input id="Date of Birth" name="Date of Birth" type="text" placeholder="" class="form-control input-md">
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="BHT Number">BHT Number</label>
+                    <div class="col-md-4">
+                        <input id="BHT Number" name="BHT Number" type="text" placeholder=""
+                            class="form-control input-md">
 
-            </div>
-        </div>
+                    </div>
+                </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="NIC">NIC</label>
-            <div class="col-md-4">
-                <input id="NIC" name="NIC" type="text" placeholder="" class="form-control input-md">
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="selectbasic">Marriage Status</label>
+                    <div class="col-md-4">
+                        <select id="selectbasic" name="selectbasic" class="form-control">
+                            <option value="1">Married</option>
+                            <option value="2">Unmarried</option>
+                        </select>
+                    </div>
+                </div>
 
-            </div>
-        </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="Patient Name ">Patient Name </label>
+                    <div class="col-md-4">
+                        <input id="Patient Name " name="Patient Name " type="text" placeholder=""
+                            class="form-control input-md">
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="Relation">Relation</label>
-            <div class="col-md-4">
-                <input id="Relation" name="Relation" type="text" placeholder="" class="form-control input-md">
+                    </div>
+                </div>
 
-            </div>
-        </div>
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="Patient Status ">Patient Status </label>
+                    <div class="col-md-4">
+                        <select id="Patient Status " name="Patient Status " class="form-control">
+                            <option value="1">Option one</option>
+                            <option value="2">Option two</option>
+                            <option value="3">Option three</option>
+                        </select>
+                    </div>
+                </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="Guardian">Guardian</label>
-            <div class="col-md-4">
-                <input id="Guardian" name="Guardian" type="text" placeholder="" class="form-control input-md">
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">Registration Date </label>
+                    <div class="col-md-4">
+                        <input id="textinput" name="textinput" type="text" placeholder="Registration Date "
+                            class="form-control input-md">
 
-            </div>
-        </div>
+                    </div>
+                </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="Contact Number">Contact Number</label>
-            <div class="col-md-4">
-                <input id="Contact Number" name="Contact Number" type="text" placeholder=""
-                    class="form-control input-md">
+                <!-- Multiple Radios -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="Gender">Gender</label>
+                    <div class="col-md-4">
+                        <div class="radio">
+                            <label for="Gender-0">
+                                <input type="radio" name="Gender" id="Gender-0" value="1" checked="checked">
+                                Option one
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label for="Gender-1">
+                                <input type="radio" name="Gender" id="Gender-1" value="2">
+                                Option two
+                            </label>
+                        </div>
+                    </div>
+                </div>
 
-            </div>
-        </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="Date of Birth">Date of Birth</label>
+                    <div class="col-md-4">
+                        <input id="Date of Birth" name="Date of Birth" type="text" placeholder=""
+                            class="form-control input-md">
 
-        <!-- Textarea -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="Address">Address</label>
-            <div class="col-md-4">
-                <textarea class="form-control" id="Address" name="Address"></textarea>
-            </div>
-        </div>
+                    </div>
+                </div>
 
-        <!-- Button -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="Save"></label>
-            <div class="col-md-4">
-                <button id="Save" name="Save" class="btn btn-success">Save</button>
-            </div>
-        </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="NIC">NIC</label>
+                    <div class="col-md-4">
+                        <input id="NIC" name="NIC" type="text" placeholder="" class="form-control input-md">
 
-    </fieldset>
-</form>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="Relation">Relation</label>
+                    <div class="col-md-4">
+                        <input id="Relation" name="Relation" type="text" placeholder="" class="form-control input-md">
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="Guardian">Guardian</label>
+                    <div class="col-md-4">
+                        <input id="Guardian" name="Guardian" type="text" placeholder="" class="form-control input-md">
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="Contact Number">Contact Number</label>
+                    <div class="col-md-4">
+                        <input id="Contact Number" name="Contact Number" type="text" placeholder=""
+                            class="form-control input-md">
+
+                    </div>
+                </div>
+
+                <!-- Textarea -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="Address">Address</label>
+                    <div class="col-md-4">
+                        <textarea class="form-control" id="Address" name="Address"></textarea>
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="Save"></label>
+                    <div class="col-md-4">
+                        <button id="Save" name="Save" class="btn btn-success">Save</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+</body>
+
+</html>

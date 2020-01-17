@@ -24,3 +24,10 @@ class Message(db.Model):
     key = db.Column(db.Boolean(), default=False) # User = true, bot = false
 
    
+class Patient(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    age = db.Column(db.String(3), nullbale=False)
+    gender = db.Column(db.String(10), nullabe=False)
+    bmi = db.Column(db.String(10), nullable=False)
+    blood_group = db.Column(db.String(10), nullable=False)
+    # diseases= db.Column()
