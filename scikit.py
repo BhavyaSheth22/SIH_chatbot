@@ -1,15 +1,14 @@
 import nltk
 from nltk.stem.lancaster import LancasterStemmer
 stemmer = LancasterStemmer()
-
+from sklearn.neural_network import MLPClassifier
 import numpy
-import tflearn
-import tensorflow
 import random
 import json
 import pickle
+from sklearn.externals import joblib 
 
-with open("intents.json") as file:
+with open("true.json") as file:
     data = json.load(file)
 
 try:
@@ -60,27 +59,22 @@ except:
 
 
     training = numpy.array(training)
+    print(training)
     output = numpy.array(output)
 
     with open("data.pickle", "wb") as f:
         pickle.dump((words, labels, training, output), f)
+######################
+######################
 
 try:
-    model.load('model.tflearn')
+    model = joblib.load('trained.pkl')
+    print("Using pickle")
 except:
-    tensorflow.reset_default_graph()
-
-    net = tflearn.input_data(shape=[None, len(training[0])])
-    net = tflearn.fully_connected(net, 8)
-    net = tflearn.fully_connected(net, 8)
-    net = tflearn.fully_connected(net, len(output[0]), activation='softmax')
-    net = tflearn.regression(net)
-
-    model = tflearn.DNN(net)
-
-    model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
-    model.save("model.tflearn")
-
+    print("Using model")
+    model = MLPClassifier(solver='lbfgs', random_state = 1, hidden_layer_sizes = (20, 10))
+    model.fit(training, output)
+    joblib.dump(model, 'trained.pkl')
 
 def bag_of_words(s, words):
     bag = [0 for _ in range(len(words))]
@@ -110,8 +104,8 @@ def chat():
         if(results[results_index] > 0.5):
             for tg in data["intents"]:
                 if tg['tag'] == tag:
-                    responses = tg['responses']
-            print(random.choice(responses))
+                    response = tg['response']
+            print(random.choice(response))
         else:
             print("I don't understand. Please try again or ask a different question.")
         
