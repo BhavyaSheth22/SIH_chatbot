@@ -63,7 +63,7 @@ def login():
 
 @app.route("/chat")
 def chat():
-    return render_template('ChatScreen.html')
+    return render_template('chat.html')
 
 @app.route("/medical_history")
 def medical_history():

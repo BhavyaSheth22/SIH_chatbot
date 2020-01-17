@@ -1,189 +1,385 @@
-<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
-<!------ Include the above in your HEAD tag ---------->
+<!DOCTYPE html>
 <html>
+  <head>
+    <title>Job Application Form</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      .checkbox {
+      padding-left: 20px;
+      }
+      .checkbox-info input[type="checkbox"]:checked+label::before {
+        background-color: #5bc0de;
+        border-color: #5bc0de;
+      }
 
-<head>
-    <title>Medical History</title>
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
-    <link href="../static/ChatScreen.css" rel="stylesheet">
-</head>
+        .checkbox-info input[type="checkbox"]:checked+label::after {
+        color: #fff;
+        }
+      body, div, form, input, select, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+      }
+      h1 {
+      position: absolute;
+      margin: 0;
+      font-size: 38px;
+      color: #fff;
+      z-index: 2;
+      }
+      p.top-info {
+      margin: 10px 0;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 20px;
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 0 25px 0 #1c87c9; 
+      }
+      .banner {
+      position: relative;
+      height: 210px;
+      background-image: url("/uploads/media/default/0001/02/fb57ab781c34da322c884532bfec751e843e36fc.jpeg");  
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      }
+      .banner::after {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.6); 
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      }
+      input, select, textarea {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      }
+      input {
+      width: calc(100% - 10px);
+      padding: 5px;
+      }
+      input[type="date"] {
+      padding: 4px 5px;
+      }
+      select {
+      width: 100%;
+      padding: 7px 0;
+      background: transparent;
+      }
+      .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
+      color: #1c87c9;
+      }
+      .item input:hover, .item select:hover {
+      border: 1px solid transparent;
+      box-shadow: 0 0 6px 0 #1c87c9;
+      color: #1c87c9;
+      }
+      .item {
+      position: relative;
+      margin: 10px 0;
+      }
+      input[type="date"]::-webkit-inner-spin-button {
+      display: none;
+      }
+      .item i, input[type="date"]::-webkit-calendar-picker-indicator {
+      position: absolute;
+      font-size: 20px;
+      color: #a9a9a9;
+      }
+      .item i {
+      right: 2%;
+      top: 30px;
+      z-index: 1;
+      }
+      [type="date"]::-webkit-calendar-picker-indicator {
+      right: 1%;
+      z-index: 2;
+      opacity: 0;
+      cursor: pointer;
+      }
+      input[type=radio]  {
+      display: none;
+      }
+      label.radio {
+      position: relative;
+      display: inline-block;
+      margin: 5px 20px 10px 0;
+      cursor: pointer;
+      }
+      .question span {
+      margin-left: 30px;
+      }
+      span.required {
+      margin-left: 0;
+      color: red;
+      }
+      label.radio:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      }
+      input[type=radio]:checked + label:before, label.radio:hover:before {
+      border: 2px solid #1c87c9;
+      }
+      label.radio:after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 5px;
+      width: 8px;
+      height: 4px;
+      border: 3px solid #1c87c9;
+      border-top: none;
+      border-right: none;
+      transform: rotate(-45deg);
+      opacity: 0;
+      }
+      input[type=radio]:checked + label:after {
+      opacity: 1;
+      }
+      .btn-block {
+      margin-top: 10px;
+      text-align: center;
+      }
+      button {
+      width: auto;
+      padding: 10px;
+      border: none;
+      border-radius: 5px; 
+      background: #1c87c9;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background: #1e6fa0;
+      }
+      @media (min-width: 568px) {
+      .name-item, .contact-item, .position-item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      }
+      .name-item input {
+      width: calc(50% - 20px);
+      }
+      .contact-item .item, .position-item .item {
+      width: calc(50% - 8px);
+      }
+      .Row {
+      display: table;
+      width: 100%; /*Optional*/
+      table-layout: fixed; /*Optional*/
+      border-spacing: 10px; /*Optional*/
+      }
+      .Column {
+      display: table-cell;
+      }
+      .contact-item input, .position-item input {
+      width: calc(100% - 12px);
+      }
+      .position-item select {
+      width: 100%;
+      }
+      }
+    </style>
+  </head>
+  <body>
 
-<body>
-    <div class="justify-content-center">
-        <form>
-            <fieldset>
-                <!-- Form Name -->
-                <legend>Patient Creation </legend>
-
-                <!-- File Button -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="Photo">Photo</label>
-                    <div class="col-md-4">
-                        <input id="Photo" name="Photo" class="input-file" type="file">
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="Registration Number ">Registration Number </label>
-                    <div class="col-md-4">
-                        <input id="Registration Number " name="Registration Number " type="text" placeholder=""
-                            class="form-control input-md">
-
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="BHT Number">BHT Number</label>
-                    <div class="col-md-4">
-                        <input id="BHT Number" name="BHT Number" type="text" placeholder=""
-                            class="form-control input-md">
-
-                    </div>
-                </div>
-
-                <!-- Select Basic -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="selectbasic">Marriage Status</label>
-                    <div class="col-md-4">
-                        <select id="selectbasic" name="selectbasic" class="form-control">
-                            <option value="1">Married</option>
-                            <option value="2">Unmarried</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="Patient Name ">Patient Name </label>
-                    <div class="col-md-4">
-                        <input id="Patient Name " name="Patient Name " type="text" placeholder=""
-                            class="form-control input-md">
-
-                    </div>
-                </div>
-
-                <!-- Select Basic -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="Patient Status ">Patient Status </label>
-                    <div class="col-md-4">
-                        <select id="Patient Status " name="Patient Status " class="form-control">
-                            <option value="1">Option one</option>
-                            <option value="2">Option two</option>
-                            <option value="3">Option three</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Registration Date </label>
-                    <div class="col-md-4">
-                        <input id="textinput" name="textinput" type="text" placeholder="Registration Date "
-                            class="form-control input-md">
-
-                    </div>
-                </div>
-
-                <!-- Multiple Radios -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="Gender">Gender</label>
-                    <div class="col-md-4">
-                        <div class="radio">
-                            <label for="Gender-0">
-                                <input type="radio" name="Gender" id="Gender-0" value="1" checked="checked">
-                                Option one
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label for="Gender-1">
-                                <input type="radio" name="Gender" id="Gender-1" value="2">
-                                Option two
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="Date of Birth">Date of Birth</label>
-                    <div class="col-md-4">
-                        <input id="Date of Birth" name="Date of Birth" type="text" placeholder=""
-                            class="form-control input-md">
-
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="NIC">NIC</label>
-                    <div class="col-md-4">
-                        <input id="NIC" name="NIC" type="text" placeholder="" class="form-control input-md">
-
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="Relation">Relation</label>
-                    <div class="col-md-4">
-                        <input id="Relation" name="Relation" type="text" placeholder="" class="form-control input-md">
-
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="Guardian">Guardian</label>
-                    <div class="col-md-4">
-                        <input id="Guardian" name="Guardian" type="text" placeholder="" class="form-control input-md">
-
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="Contact Number">Contact Number</label>
-                    <div class="col-md-4">
-                        <input id="Contact Number" name="Contact Number" type="text" placeholder=""
-                            class="form-control input-md">
-
-                    </div>
-                </div>
-
-                <!-- Textarea -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="Address">Address</label>
-                    <div class="col-md-4">
-                        <textarea class="form-control" id="Address" name="Address"></textarea>
-                    </div>
-                </div>
-
-                <!-- Button -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="Save"></label>
-                    <div class="col-md-4">
-                        <button id="Save" name="Save" class="btn btn-success">Save</button>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
+    <div class="testbox">
+    <form method="POST" action="">
+        <div class="banner">
+          <h1>Medical History</h1>
+        </div>
+        <div class="item">
+          <p>Name<span class="required">*</span></p>
+          <div class="name-item">
+            <input type="text" name="name" placeholder="First" required/>
+            <input type="text" name="name" placeholder="Last" required/>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="item">
+            <p>Email<span class="required">*</span></p>
+            <input type="text" name="name" required/>
+          </div>
+          <div class="item">
+            <p>Phone<span class="required">*</span></p>
+            <input type="text" name="name" required/>
+          </div>
+        </div>
+        <div class="position-item">
+          <div class="item">
+            <p>Gender<span class="required">*</span></p>
+            <select required>
+              <option value="1">Male</option>
+              <option value="2">Female</option>
+              <option value="3">Other</option>
+            </select>
+          </div>
+          <div class="item">
+            <!-- <p>Available start date<span class="required">*</span></p>
+            <input type="date" name="bdate" required/> 
+            <i class="fas fa-calendar-alt"></i> -->
+            <p>Age<span class="required">*</span></p>
+            <input type="text" name="name" required/>
+          </div>
+        </div>
+        <div class="Row">
+          <div class="Column">
+            <p>Weigth(in kg)<span class="required">*</span></p>
+            <input type="text" name="name" required/>
+          </div>
+          <div class="Column">
+            <p>height(in cm)<span class="required">*</span></p>
+            <input type="text" name="name" required/>
+          </div>
+          <div class="Column">
+            <p>Blood Group<span class="required">*</span></p>
+            <select required>
+              <option value="1">A+</option>
+              <option value="2">A-</option>
+              <option value="3">B+</option>
+              <option value="1">B-</option>
+              <option value="2">AB+</option>
+              <option value="3">AB-</option>
+              <option value="2">O+</option>
+              <option value="3">O-</option>
+            </select>
+          </div>
+        </div> 
+        <div class="question">
+          <p>Check the conditions that apply to you or to any members of your immediate relatives:<span class="required">*</span></p>
+          <div class="question-answer">
+              <label><input type="checkbox" value="none" id="Asthma" name="status" required>Asthma</input></label>
+              <label><input type="checkbox" value="none" id="Cancer" name="status" required>Cancer</input></label>
+              <label><input type="checkbox" value="none" id="Cardiac disease" name="status" required>Cardiac disease</input></label>
+              <label><input type="checkbox" value="none" id="Diabetes" name="status" required>Diabetes</input></label>
+              <label><input type="checkbox" value="none" id="Hypertension" name="status" required>Hypertension</input></label>
+              <label><input type="checkbox" value="none" id="Psychiatric disorder" name="status" required>Psychiatric disorder</input></label>
+              <label><input type="checkbox" value="none" id="Epilepsy" name="status" required>Epilepsy</input></label>
+        </div>
+        <div class="question">
+          <p>Check the symptoms that you're currently experiencing:<span class="required">*</span></p>
+          <div class="question-answer">
+              <label><input type="checkbox" value="none"  name="status" required>Chest Pain</input></label>
+              <label><input type="checkbox" value="none"  name="status" required>Respiratory</input></label>
+              <label><input type="checkbox" value="none"  name="status" required>Cardiac disease</input></label>
+              <label><input type="checkbox" value="none"  name="status" required>Cardiovascular</input></label>
+              <label><input type="checkbox" value="none"  name="status" required>Hematological</input></label>
+              <label><input type="checkbox" value="none"  name="status" required>Neurological</input></label>
+              <label><input type="checkbox" value="none"  name="status" required>Psychiatric</input></label>
+              <label><input type="checkbox" value="none"  name="status" required>Gastrointestinal</input></label>
+              <label><input type="checkbox" value="none"  name="status" required>Weight gain</input></label>
+              <label><input type="checkbox" value="none"  name="status" required>Weight loss</input></label>
+              <label><input type="checkbox" value="none"  name="status" required>Musculoskeletal</input></label>
+        </div>
+        <div class="question">
+          <p>Have you had any prior surgeries?<span class="required">*</span></p>
+          <div class="question-answer">
+            <div>
+              <input type="radio" value="none" id="radio_7" name="references" />
+              <label for="radio_7" class="radio"><span>Yes</span></label>
+            </div>
+            <div>
+              <input type="radio" value="none" id="radio_8" name="references" />
+              <label for="radio_8" class="radio"><span>No</span></label>
+            </div>
+            <p>if yes, please state:</p>
+            <textarea rows="4" cols="50">
+                
+            </textarea>
+          </div>
+        </div>
+        <div class="question">
+          <p>Are you currently taking any medication?<span class="required">*</span></p>
+          <div class="question-answer">
+            <div>
+              <input type="radio" value="none" id="radio_5" name="references" />
+              <label for="radio_5" class="radio"><span>Yes</span></label>
+            </div>
+            <div>
+              <input type="radio" value="none" id="radio_6" name="references" />
+              <label for="radio_6" class="radio"><span>No</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="question">
+          <p>Do you have any medication allergies?<span class="required">*</span></p>
+          <div class="question-answer">
+            <div>
+              <input type="radio" value="none" id="radio_7" name="references" />
+              <label for="radio_7" class="radio"><span>Yes</span></label>
+            </div>
+            <div>
+              <input type="radio" value="none" id="radio_8" name="references" />
+              <label for="radio_8" class="radio"><span>No</span></label>
+            </div>
+            <div>
+              <input type="radio" value="none" id="radio_9" name="references" />
+              <label for="radio_9" class="radio"><span>Not Sure</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="question">
+          <p>Do you use or do you have history of using tobacco? <span class="required">*</span></p>
+          <div class="question-answer">
+            <div>
+              <input type="radio" value="none" id="radio_10" name="references" />
+              <label for="radio_10" class="radio"><span>Yes</span></label>
+            </div>
+            <div>
+              <input type="radio" value="none" id="radio_11" name="references" />
+              <label for="radio_11" class="radio"><span>No</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="question">
+          <p>How often do you consume alcohol?<span class="required">*</span></p>
+          <div class="question-answer">
+            <div>
+              <input type="radio" value="none" id="radio_12" name="references" />
+              <label for="radio_12" class="radio"><span>Often</span></label>
+            </div>
+            <div>
+              <input type="radio" value="none" id="radio_13" name="references" />
+              <label for="radio_13" class="radio"><span>Not Often</span></label>
+            </div>
+             <div>
+              <input type="radio" value="none" id="radio_14" name="references" />
+              <label for="radio_14" class="radio"><span>Never</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="btn-block">
+          <button type="submit" href="/">Apply For The Job</button>
+        </div>
+      </form>
     </div>
-
-</body>
-
+  </body>
 </html>
