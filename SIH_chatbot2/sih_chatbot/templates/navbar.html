@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+   
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{url_for('landing')}}"><img src="../static/img/logo1.png"
+                class="img-responsive" style="width: 140px; margin-top: -16px;"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto my-2">
+                {% if current_user.is_authenticated %}
+                <li class="active"><a href="{{url_for('login')}}"></a>Home</li>
+                <button><li class=""><a href="{{url_for('register')}}" ></a>Chat</li></button>
+                <li class=""><a href="{{url_for('register')}}" ></a>Medical Form</li>
+                <li class=""><a href="{{url_for('register')}}" ></a>Logout</li>
+                {% else %}
+                <li class="active"><a href="{{url_for('login')}}">Login</a></li>
+                <li class=""><a href="{{url_for('register')}}">Register</a></li>
+                {% endif %}
+
+            </ul>
+
+        </div>
+    </nav>
+</body>
+
+</html>

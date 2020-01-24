@@ -1,0 +1,195 @@
+<!-- <script src="/SIH_chatbot/sih_chatbot/templates/bootstrap/js/bootstrap.min.js"></script> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Chat</title>
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+		integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+	<link href="../static/ChatScreen.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
+	<link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="../static/ChatScreen.css"> -->
+</head>
+
+<body>
+	<style>
+		p {
+			font-family: "Times New Roman", Times, serif;
+		}
+		
+	</style>
+	<div class="container-fluid h-100 bg-light">
+		<div class="navbar-inner">
+			<nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+				<a class="navbar-brand" href="{{url_for('landing')}}"><img src="../static/img/capture2.png"></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto my-2">
+						{% if current_user.is_authenticated %}
+						<li class=""><a href="{{url_for('login')}}" class="btn">Home</a></li>
+						<li class=""><a href="{{url_for('register')}}" class="btn">Chat</a></li>
+						<li class=""><a href="{{url_for('medical_history')}}" class="btn">Medical Form</a></li>
+						<li class=""><a href="{{url_for('logout')}}" class="btn">Logout</a></li>
+						{% else %}
+						<li class=""><a href="{{url_for('login')}}">Login</a></li>
+						<li class=""><a href="{{url_for('register')}}">Register</a></li>
+						{% endif %}
+
+					</ul>
+
+				</div>
+			</nav>
+		</div>
+		<div class="row justify-content-center h-100 bg-secondary">
+			<div class="col-md-8 col-xl-6 chat">
+				<div class="card">
+					<div class="card-header msg_head">
+					</div>
+					<div class="card-body msg_card_body" id="content">
+						<div class="d-flex justify-content-start mb-4">
+							<div class="msg_cotainer">
+								Welcome to MediBot+, how can I help you?
+							</div>
+						</div>
+						{% for message in messages %}
+							{% if message.key %}
+								{% if message.email == current_user.email %}
+								<div class="d-flex justify-content-end mb-4 ">
+									<div class="msg_cotainer_send">
+										{{message.message}}
+									</div>
+								</div>
+								{% endif %}
+							{% else %}
+								<div class="d-flex justify-content-start mb-4">
+									<div class="msg_cotainer">
+										{{message.message}}
+									</div>
+								</div>
+							{% endif %}
+						{% endfor %}
+					</div>
+					<!-- <div class="card-footer">
+						<div class="input-group">
+							<div class="input-group-append">
+								<span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
+							</div>
+							<input type="text" placeholder="enter message" id="chat_text">
+							<div class="input-group-append">
+								<span class="input-group-text send_btn" id="chat_btn"><i
+										class="fas fa-location-arrow"></i></span>
+							</div>
+						</div>
+					</div> -->
+					<div class="input-group mt-2 mb-3">
+						<input type="text" name="" id="chat_text" class="form-control" placeholder="Enter your message" autofocus>
+						<div class="input-group-append">
+							<input type="submit" id="chat_btn" class="btn btn-primary btn-lg" value="Send">
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<script>
+
+			$(function () {
+
+				//   $('#start_chat').on('click', function() {
+
+				//     username = $('#username_input').val();
+				//     $('.modal').removeClass('is-active');
+
+				//   });
+
+				$('#chat_btn').on('click', function () {
+					// console.log('chat_btn')
+					let message = $('#chat_text').val();
+
+					$.post('/message', { 'message': message }, function () {
+						$('#chat_text').val('');
+						console.log('chat_text')
+					});
+
+				});
+
+				$("input[type='text']").keypress(function (event) {
+					if (event.which === 13) {
+						//grabbing new todo text from input
+						let message = $('#chat_text').val();
+
+						//create a new li and add to ul
+						$.post('/message', { 'message': message }, function () {
+							$('#chat_text').val('');
+							console.log('chat_text')
+						});
+					}
+				});
+
+				// Enable pusher logging - don't include this in production
+				Pusher.logToConsole = true;
+
+				var pusher = new Pusher('474991b3a2877f9aa291', {
+					cluster: 'ap2',
+					forceTLS: true
+				});
+
+				var channel = pusher.subscribe('chat-channel');
+
+				channel.bind('new-message', function (data) {
+					console.log('checking append')
+					//   let name = data.username;
+					let message = data.message;
+					let key = data.key;
+					//let reply="hi";
+					if (key === true) {
+						var message_template = `<div class="d-flex justify-content-end mb-4">
+									<div class="msg_cotainer_send">
+										${message}
+									</div>
+								</div>`;
+					}
+					else {
+						var message_template = `<div class="d-flex justify-content-start mb-4">
+									<div class="msg_cotainer">
+										${message}
+									</div>
+								</div>`;
+
+					}
+					$('#content').append(message_template);
+
+				});
+
+
+
+			});
+
+		</script>
+		<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Job Application Form</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      .checkbox {
+      padding-left: 20px;
+      }
+      .checkbox-info input[type="checkbox"]:checked+label::before {
+        background-color: #5bc0de;
+        border-color: #5bc0de;
+      }
+
+        .checkbox-info input[type="checkbox"]:checked+label::after {
+        color: #fff;
+        }
+      body, div, form, input, select, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+      }
+      h1 {
+      position: absolute;
+      margin: 0;
+      font-size: 38px;
+      color: #fff;
+      z-index: 2;
+      }
+      p.top-info {
+      margin: 10px 0;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 20px;
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 0 25px 0 #1c87c9; 
+      }
+      .banner {
+      position: relative;
+      height: 210px;
+      background-image: url("/uploads/media/default/0001/02/fb57ab781c34da322c884532bfec751e843e36fc.jpeg");  
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      }
+      .banner::after {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.6); 
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      }
+      input, select, textarea {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      }
+      input {
+      width: calc(100% - 10px);
+      padding: 5px;
+      }
+      input[type="date"] {
+      padding: 4px 5px;
+      }
+      select {
+      width: 100%;
+      padding: 7px 0;
+      background: transparent;
+      }
+      .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
+      color: #1c87c9;
+      }
+      .item input:hover, .item select:hover {
+      border: 1px solid transparent;
+      box-shadow: 0 0 6px 0 #1c87c9;
+      color: #1c87c9;
+      }
+      .item {
+      position: relative;
+      margin: 10px 0;
+      }
+      input[type="date"]::-webkit-inner-spin-button {
+      display: none;
+      }
+      .item i, input[type="date"]::-webkit-calendar-picker-indicator {
+      position: absolute;
+      font-size: 20px;
+      color: #a9a9a9;
+      }
+      .item i {
+      right: 2%;
+      top: 30px;
+      z-index: 1;
+      }
+      [type="date"]::-webkit-calendar-picker-indicator {
+      right: 1%;
+      z-index: 2;
+      opacity: 0;
+      cursor: pointer;
+      }
+      input[type=radio]  {
+      display: none;
+      }
+      label.radio {
+      position: relative;
+      display: inline-block;
+      margin: 5px 20px 10px 0;
+      cursor: pointer;
+      }
+      .question span {
+      margin-left: 30px;
+      }
+      span.required {
+      margin-left: 0;
+      color: red;
+      }
+      label.radio:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      }
+      input[type=radio]:checked + label:before, label.radio:hover:before {
+      border: 2px solid #1c87c9;
+      }
+      label.radio:after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 5px;
+      width: 8px;
+      height: 4px;
+      border: 3px solid #1c87c9;
+      border-top: none;
+      border-right: none;
+      transform: rotate(-45deg);
+      opacity: 0;
+      }
+      input[type=radio]:checked + label:after {
+      opacity: 1;
+      }
+      .btn-block {
+      margin-top: 10px;
+      text-align: center;
+      }
+      button {
+      width: auto;
+      padding: 10px;
+      border: none;
+      border-radius: 5px; 
+      background: #1c87c9;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background: #1e6fa0;
+      }
+      @media (min-width: 568px) {
+      .name-item, .contact-item, .position-item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      }
+      .name-item input {
+      width: calc(50% - 20px);
+      }
+      .contact-item .item, .position-item .item {
+      width: calc(50% - 8px);
+      }
+      .Row {
+      display: table;
+      width: 100%; /*Optional*/
+      table-layout: fixed; /*Optional*/
+      border-spacing: 10px; /*Optional*/
+      }
+      .Column {
+      display: table-cell;
+      }
+      .contact-item input, .position-item input {
+      width: calc(100% - 12px);
+      }
+      .position-item select {
+      width: 100%;
+      }
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="testbox">
+    <form method="POST" action="{{ url_for('medical_database') }}">
+        <div class="banner">
+          <h1>Medical History</h1>
+        </div>
+        <div class="contact-item">
+          <div class="item">
+            <p>Contact Number<span class="required">*</span></p>
+            <input type="text" name="contact" required/>
+          </div>
+          <div class="item">
+            <p>Emergency Contact<span class="required">*</span></p>
+            <input type="text" name="emergency_contact" required/>
+          </div>
+        </div>
+        <div class="position-item">
+          <div class="item">
+            <p>Gender<span class="required">*</span></p>
+            <select  name="gender_select" required>
+            <option value="" disabled selected hidden></option>
+                {% for g in gender %}
+              <option value="{{ g }}">{{ g }}</option>
+                {% endfor %}
+            </select>
+          </div>
+          <div class="item">
+            <!-- <p>Available start date<span class="required">*</span></p>
+            <input type="date" name="bdate" required/> 
+            <i class="fas fa-calendar-alt"></i> -->
+            <p>Age<span class="required">*</span></p>
+            <input type="text" name="age" required/>
+          </div>
+        </div>
+        <div class="Row">
+          <div class="Column">
+            <p>Weigth(in kg)<span class="required">*</span></p>
+            <input type="text" name="weight" required/>
+          </div>
+          <div class="Column">
+            <p>height(in cm)<span class="required">*</span></p>
+            <input type="text" name="height" required/>
+          </div>
+          <div class="Column">
+            <p>Blood Group<span class="required">*</span></p>
+            <select name="blood_select" required>
+            <option value="" disabled selected hidden></option> 
+              {% for b in blood %}  
+              <option value="{{ b }}">{{ b }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div> 
+        <div class="question">
+          <p>Check the conditions that apply to you or to any members of your immediate relatives:<span class="required">*</span></p>
+          <div class="question-answer">
+              <input type="checkbox" value="Asthma" name="status_condition" >Asthma</input>
+              <input type="checkbox" value="Cancer" name="status_condition" >Cancer</input>
+              <input type="checkbox" value="Cardiac disease" name="status_condition" >Cardiac disease</input>
+              <input type="checkbox" value="Diabetes" name="status_condition" >Diabetes</input>
+              <input type="checkbox" value="Hypertension" name="status_condition" >Hypertension</input>
+              <input type="checkbox" value="Psychiatric disorder" name="status_condition" >Psychiatric disorder</input>
+              <input type="checkbox" value="Epilepsy" name="status_condition" >Epilepsy</input>
+              <input type="checkbox" value="None" name="status_condition" >None</input>
+        </div>
+        <br>
+        <div class="question">
+          <p>Check the symptoms that you're currently experiencing:<span class="required">*</span></p>
+          <div class="question-answer">
+              <input type="checkbox" value="Chest Pain"  name="status_symptom">Chest Pain</input>
+              <input type="checkbox" value="Respiratory"  name="status_symptom">Respiratory</input>
+              <input type="checkbox" value="Cardiac disease"  name="status_symptom">Cardiac disease</input>
+              <input type="checkbox" value="Cardiovascular"  name="status_symptom">Cardiovascular</input>
+              <input type="checkbox" value="Hematological"  name="status_symptom">Hematological</input>
+              <input type="checkbox" value="Neurological"  name="status_symptom">Neurological</input>
+              <input type="checkbox" value="Psychiatric"  name="status_symptom">Psychiatric</input>
+              <input type="checkbox" value="Gastrointestinal"  name="status_symptom">Gastrointestinal</input>
+              <input type="checkbox" value="Weight gain"  name="status_symptom">Weight gain</input>
+              <input type="checkbox" value="Weight loss"  name="status_symptom">Weight loss</input>
+              <input type="checkbox" value="Musculoskeletal"  name="status_symptom">Musculoskeletal</input>
+              <input type="checkbox" value="None"  name="status_symptom" >None</input>
+        </div>
+        <div class="question">
+          <p>Have you had any prior surgeries?<span class="required">*</span></p>
+          <div class="question-answer">
+            <div>
+              <input type="radio" value="yes" id="radio_1" name="surgeries" />
+              <label for="radio_1" class="radio"><span>Yes</span></label>
+            </div>
+            <div>
+              <input type="radio" value="no" id="radio_2" name="surgeries" />
+              <label for="radio_2" class="radio"><span>No</span></label>
+            </div>
+            <p>if yes, please state:</p>
+            <textarea name="surgeries_text" rows="4" cols="50"></textarea>
+          </div>
+        </div>
+        <div class="question">
+          <p>Are you currently taking any medication?<span class="required">*</span></p>
+          <div class="question-answer">
+            <div>
+              <input type="radio" value="yes" id="radio_3" name="medications" />
+              <label for="radio_3" class="radio"><span>Yes</span></label>
+            </div>
+            <div>
+              <input type="radio" value="no" id="radio_4" name="medications" />
+              <label for="radio_4" class="radio"><span>No</span></label>
+            </div>
+            <p>if yes, please state:</p>
+            <textarea name="medications_text" rows="4" cols="50"></textarea>
+          </div>
+        </div>
+        <div class="question">
+          <p>Do you have any allergies?<span class="required">*</span></p>
+          <div class="question-answer">
+            <div>
+              <input type="radio" value="yes" id="radio_5" name="allergies" />
+              <label for="radio_5" class="radio"><span>Yes</span></label>
+            </div>
+            <div>
+              <input type="radio" value="no" id="radio_6" name="allergies" />
+              <label for="radio_6" class="radio"><span>No</span></label>
+            </div>
+            <div>
+              <input type="radio" value="no_sure" id="radio_7" name="allergies" />
+              <label for="radio_7" class="radio"><span>Not Sure</span></label>
+            </div>
+            <p>if yes, please state:</p>
+            <textarea name="allergies_text" rows="4" cols="50"></textarea>
+          </div>
+        </div>
+        <div class="question">
+          <p>Do you use or do you have history of using tobacco? <span class="required">*</span></p>
+          <div class="question-answer">
+            <div>
+              <input type="radio" value="yes" id="radio_8" name="tobacco" />
+              <label for="radio_8" class="radio"><span>Yes</span></label>
+            </div>
+            <div>
+              <input type="radio" value="no" id="radio_9" name="tobacco" />
+              <label for="radio_9" class="radio"><span>No</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="question">
+          <p>How often do you consume alcohol?<span class="required">*</span></p>
+          <div class="question-answer">
+            <div>
+              <input type="radio" value="yes" id="radio_10" name="alcohol" />
+              <label for="radio_10" class="radio"><span>Often</span></label>
+            </div>
+            <div>
+              <input type="radio" value="not_often" id="radio_11" name="alcohol" />
+              <label for="radio_11" class="radio"><span>Not Often</span></label>
+            </div>
+             <div>
+              <input type="radio" value="never" id="radio_12" name="alcohol" />
+              <label for="radio_12" class="radio"><span>Never</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="btn-block">
+          <button type="submit" href="/">Submit</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
